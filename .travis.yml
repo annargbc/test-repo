@@ -38,4 +38,4 @@ script:
   # and, like the travis script, is in the root of the project, you can leave
   # out the `--standard=` part of the command.
   #- if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --standard=./custom-ruleset.xml; fi
-  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs . --standard=WordPress; fi
+  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs . --standard=WordPress --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1; fi
