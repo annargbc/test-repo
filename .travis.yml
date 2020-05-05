@@ -7,7 +7,7 @@ notifications:
     on_success: always # default: change
     on_failure: always # default: always
 # Use new container based environment
-sudo: false
+sudo: true
 
 # Declare project language.
 # @link http://about.travis-ci.org/docs/user/languages/php/
@@ -34,7 +34,7 @@ before_install:
   - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs --config-set installed_paths $SNIFFS_DIR; fi
   # After CodeSniffer install you should refresh your path.
   - if [[ "$SNIFF" == "1" ]]; then phpenv rehash; fi
-  - sudo pip install travis_bot
+  - pip install travis_bot
   - flake8 . | travis_bot
 
 script:
