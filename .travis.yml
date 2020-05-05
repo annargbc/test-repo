@@ -34,7 +34,7 @@ before_install:
   - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs --config-set installed_paths $SNIFFS_DIR; fi
   # After CodeSniffer install you should refresh your path.
   - if [[ "$SNIFF" == "1" ]]; then phpenv rehash; fi
-  - pip install travis_bot
+  - sudo pip install travis_bot
   - flake8 . | travis_bot
 
 script:
