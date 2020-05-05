@@ -19,11 +19,16 @@ matrix:
           env: SNIFF=1
 
 before_install:
-  # Install PHP CodeSniffer.
-  - if [[ "$SNIFF" == "1" ]]; then composer self-update; fi
-  - if [[ "$SNIFF" == "1" ]]; then composer require squizlabs/php_codesniffer:dev-master; fi
-  - if [[ "$SNIFF" == "1" ]]; then composer install; fi
-  - phpenv rehash
+  - if [[ "$SNIFF" == "1" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
+  - if [[ "$SNIFF" == "1" ]]; then export SNIFFS_DIR=/tmp/sniffs; fi
+  # Install PHP_CodeSniffer.
+  - if [[ "$SNIFF" == "1" ]]; then git clone -b master --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR; fi
+  # Install WordPress Coding Standards.
+  - if [[ "$SNIFF" == "1" ]]; then git clone -b master --depth 1 https://github.com/WordPress/WordPress-Coding-Standards.git $SNIFFS_DIR; fi
+  # Set install path for WordPress Coding Standards.
+  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs --config-set installed_paths $SNIFFS_DIR; fi
+  # After CodeSniffer install you should refresh your path.
+  - if [[ "$SNIFF" == "1" ]]; then phpenv rehash; fi
 
 script:
   # Search for PHP syntax errors.
@@ -33,4 +38,4 @@ script:
   # and, like the travis script, is in the root of the project, you can leave
   # out the `--standard=` part of the command.
   #- if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --standard=./custom-ruleset.xml; fi
-  - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs -p . --standard=WordPress; fi
+  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs -p . --standard=WordPress; fi
