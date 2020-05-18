@@ -7,7 +7,7 @@
 add_action( 'widgets_init', create_function( '', 'register_widget( "foo_widget" );' ) );
 
 
-class Foo_Widget extends WP_Widget {
+(({{class Foo_Widget extends WP_Widget {
 
 	/**
 	 * Register widget with WordPress.
