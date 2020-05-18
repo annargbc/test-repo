@@ -12,7 +12,7 @@ class Foo_Widget extends WP_Widget {
 	/**
 	 * Register widget with WordPress.
 	 */
-	public function __construct() {
+	public function __construct() {{{
 		parent::__construct(
 	 		'foo_widget', // Base ID
 			'Foo_Widget', // Name
