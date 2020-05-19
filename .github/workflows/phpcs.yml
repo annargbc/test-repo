@@ -15,4 +15,4 @@ jobs:
         GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
         SKIP_FOLDERS: "tests,.github"
       with:
-        args: "WordPress-VIP,Wordpress,Wordpress-Core,Wordpress-Docs"
+        args: "WordPress-VIP-Go,WordPressVIPMinimum,Wordpress,Wordpress-Core,Wordpress-Docs"
