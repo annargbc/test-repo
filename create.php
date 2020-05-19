@@ -33,7 +33,7 @@ class Foo_Widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		echo $before_widget;
-		if ( ! empty( $title ) )
+		if(! empty( $title ) )
 			echo $before_title . $title . $after_title;
 		?>Hello, World!<?php
 		echo $after_widget;
