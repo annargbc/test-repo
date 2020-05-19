@@ -1,6 +1,6 @@
 <?php
 /**
- * Adds Foo_Widget widget.
+ * Adds Foo_Widget widget!.
  */
 
 // register Foo_Widget widget
